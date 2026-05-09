@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class ATM {
+    static double balance = 1000;
+    public static void cb(){ //cb - check balance
+        System.out.println("Current Balance: $" + balance);
+    }
+    public static void deposit(double amount){
+        balance += amount;
+        System.out.println("$" + amount + " deposited successfully. ");
+    }
+    public static void withdraw(double amount){
+        if(amount <= balance){
+            balance -= amount;
+            System.out.println("$" + amount + " withdraw successfully. ");
+        }else{
+            System.out.println("Insuccessfully Balance!");
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int cho;
+        do{
+            System.out.println("\n====ATM MENU ====");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            cho = sc.nextInt();
+            switch(cho){
+                case 1:
+                    cb();
+                    break;
+                case 2:
+                    System.out.print("Enter deposit amount: $");
+                    double depositAmount = sc.nextDouble();
+                    deposit(depositAmount);
+                    break;
+                case 3:
+                    System.out.print("Enter withdraw amount: $");
+                    double withdrawAmount = sc.nextDouble();
+                    withdraw(withdrawAmount);
+                    break;
+                case 4:
+                    System.out.println("Thank you for using ATM!");
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+        }while(cho != 4);
+        sc.close();
+    }
+}
